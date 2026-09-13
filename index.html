@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPv4 VLSM Quiz</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app-shell">
+<section class="hero">
+  <div>
+    <span class="badge">IPv4 • VLSM • Quiz Mode</span>
+    <h1>IPv4 VLSM Quiz</h1>
+    <p>Latihan menentukan Network ID, Subnet Mask, Broadcast ID, First Usable Host, dan Last Usable Host dari IPv4 serta prefix length yang dibangkitkan secara acak.</p>
+  </div>
+  <div class="hero-icon">🧠</div>
+</section>
+
+<section class="stats-bar">
+  <div class="stat"><span>Timer</span><strong id="timer">00:00</strong></div>
+  <div class="stat"><span>Percobaan</span><strong id="attempts">0</strong></div>
+  <div class="stat"><span>Benar</span><strong id="correctCount">0 / 5</strong></div>
+  <div class="stat"><span>Nilai</span><strong id="scorePercent">0%</strong></div>
+</section>
+
+<section class="grid">
+  <div class="card input-card">
+    <h2>Soal</h2>
+    <div class="problem-box">
+      <div><span>IPv4</span><strong id="problemIp">-</strong></div>
+      <div><span>Prefix / CIDR</span><strong id="problemPrefix">-</strong></div>
+    </div>
+    <button id="generateBtn" class="generate-btn" type="button">🎲 Generate Soal Baru</button>
+    <div class="info-note">Tentukan seluruh parameter subnet berdasarkan IPv4 dan prefix di atas. Gunakan format dotted-decimal, misalnya <b>192.168.1.0</b>.</div>
+  </div>
+
+  <div class="card quiz-card">
+    <h2>Jawaban Mahasiswa</h2>
+    <p class="muted">Isi kelima jawaban, kemudian tekan <b>Periksa Jawaban</b>.</p>
+    <form id="quizForm" novalidate>
+      <div class="answer-grid">
+        <div class="answer-field" id="fieldNetwork">
+          <label for="answerNetwork">Network ID</label>
+          <input id="answerNetwork" type="text" autocomplete="off" placeholder="192.168.10.64">
+          <div class="feedback" id="feedbackNetwork"></div>
+        </div>
+        <div class="answer-field" id="fieldMask">
+          <label for="answerMask">Subnet Mask</label>
+          <input id="answerMask" type="text" autocomplete="off" placeholder="255.255.255.192">
+          <div class="feedback" id="feedbackMask"></div>
+        </div>
+        <div class="answer-field" id="fieldBroadcast">
+          <label for="answerBroadcast">Broadcast ID</label>
+          <input id="answerBroadcast" type="text" autocomplete="off" placeholder="192.168.10.127">
+          <div class="feedback" id="feedbackBroadcast"></div>
+        </div>
+        <div class="answer-field" id="fieldFirst">
+          <label for="answerFirst">First Usable Host</label>
+          <input id="answerFirst" type="text" autocomplete="off" placeholder="192.168.10.65">
+          <div class="feedback" id="feedbackFirst"></div>
+        </div>
+        <div class="answer-field" id="fieldLast">
+          <label for="answerLast">Last Usable Host</label>
+          <input id="answerLast" type="text" autocomplete="off" placeholder="192.168.10.126">
+          <div class="feedback" id="feedbackLast"></div>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="primary-btn" type="submit">Periksa Jawaban</button>
+        <button class="secondary-btn" id="resetBtn" type="button">Reset Kuis</button>
+      </div>
+    </form>
+    <div id="validationMessage" class="message hidden" role="alert"></div>
+    <div id="resultMessage" class="result-message" aria-live="polite">Jawaban belum diperiksa.</div>
+  </div>
+</section>
+
+<section class="card review-card">
+  <h2>Ringkasan Penilaian</h2>
+  <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+  <div class="review-grid">
+    <div><span>Skor saat ini</span><strong id="reviewScore">0 / 5</strong></div>
+    <div><span>Persentase</span><strong id="reviewPercent">0%</strong></div>
+    <div><span>Total percobaan</span><strong id="reviewAttempts">0</strong></div>
+    <div><span>Waktu berjalan</span><strong id="reviewTime">00:00</strong></div>
+  </div>
+</section>
+
+</main>
+<script src="app.js"></script>
+</body>
+</html>
